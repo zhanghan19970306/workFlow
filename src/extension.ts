@@ -1,7 +1,5 @@
 import * as vscode from 'vscode'
-import { fetch, fs, path } from 'zx'
-import dayjs from 'dayjs'
-import { INNER_SITE } from './config'
+import { fs, path } from 'zx'
 
 export async function activate(context: vscode.ExtensionContext) {
   // TODO: 这里是example
