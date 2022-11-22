@@ -1,0 +1,15 @@
+ls:
+  pages:
+    .html: kebabcase
+
+  src:
+    module/**/*:
+      .ts: pointcase
+
+  scripts:
+    .mjs: kebabcase
+    .js: kebabcase
+
+ignore:
+  - .git
+  - node_modules

@@ -1,0 +1,49 @@
+// See https://go.microsoft.com/fwlink/?LinkId=733558
+// for the documentation about the tasks.json format
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-extension",
+      "type": "npm",
+      "script": "esbuild",
+      "problemMatcher": "$esbuild-watch"
+    },
+    {
+      "label": "build-view",
+      "type": "npm",
+      "script": "view-dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "source": "esbuild",
+        "fileLocation": "relative",
+        "pattern": {
+          "regexp": "> (.*?):([0-9]+):([0-9]+): (warning|error): (.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "ready in"
+          },
+          "endsPattern": {
+            "regexp": "ready in"
+          }
+        }
+      }
+    },
+    {
+      "label": "dev-extension",
+      "dependsOn": ["build-extension", "build-view"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
